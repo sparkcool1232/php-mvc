@@ -6,13 +6,14 @@ $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
 $host = $_ENV['DB_HOST'] ?? '127.0.0.1';
+$port = $_ENV['DB_PORT'] ?? '3306';
 $db_name = $_ENV['DB_NAME'] ?? 'moneysmart_clone';
 $username = $_ENV['DB_USER'] ?? 'root';
 $password = $_ENV['DB_PASS'] ?? '';
 
 try {
     // Connect without database selected first
-    $conn = new PDO("mysql:host=$host", $username, $password);
+    $conn = new PDO("mysql:host=$host;port=$port", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
     // Create DB if not exists

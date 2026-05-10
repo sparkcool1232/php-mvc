@@ -10,12 +10,13 @@ class Database {
     public static function getConnection() {
         if (self::$conn === null) {
             $host = $_ENV['DB_HOST'] ?? '127.0.0.1';
+            $port = $_ENV['DB_PORT'] ?? '3306';
             $db_name = $_ENV['DB_NAME'] ?? 'moneysmart_clone';
             $username = $_ENV['DB_USER'] ?? 'root';
             $password = $_ENV['DB_PASS'] ?? '';
 
             try {
-                self::$conn = new PDO("mysql:host=" . $host . ";dbname=" . $db_name, $username, $password);
+                self::$conn = new PDO("mysql:host=" . $host . ";port=" . $port . ";dbname=" . $db_name, $username, $password);
                 self::$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 self::$conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
             } catch(PDOException $exception) {
