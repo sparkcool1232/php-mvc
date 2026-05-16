@@ -35,6 +35,7 @@ if (($_ENV['APP_ENV'] ?? 'local') === 'production') {
 spl_autoload_register(function ($class) {
     // E.g. App\Controllers\ProductController -> app/controllers/ProductController.php
     $path = str_replace('App\\', 'app/', $class);
+    $path = str_replace('Config\\', 'config/', $path);
     $path = str_replace('\\', '/', $path);
     // Lowercase the first directory (e.g. app/Controllers -> app/controllers)
     $pathParts = explode('/', $path);
