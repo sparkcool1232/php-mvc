@@ -6,9 +6,9 @@ define('BASE_PATH', dirname(__DIR__));
 // Require Composer autoloader
 require BASE_PATH . '/vendor/autoload.php';
 
-// Load Environment Variables from .env file
+// Load Environment Variables from .env file (if it exists)
 $dotenv = Dotenv\Dotenv::createImmutable(BASE_PATH);
-$dotenv->load();
+$dotenv->safeLoad();
 
 // Generate CSRF Token for security
 if (empty($_SESSION['csrf_token'])) {
