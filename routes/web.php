@@ -12,6 +12,11 @@ $router->set404(function() {
 $router->get('/', 'App\Controllers\ProductController@index');
 $router->get('/compare', 'App\Controllers\ProductController@compare');
 
+// Migration Route (Temporary)
+$router->get('/migrate', function() {
+    require BASE_PATH . '/public/migrate.php';
+});
+
 // Chat API
 $router->post('/chat/send', 'App\Controllers\ChatController@send');
 $router->get('/chat/fetch', 'App\Controllers\ChatController@fetch');
